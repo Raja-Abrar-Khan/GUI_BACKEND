@@ -30,19 +30,33 @@ def stream_frames(get_frame):
         else:
             time.sleep(0.03)
 
-@app.get("/")
-def read_root():
-    addresses = sorted(
-        {
+
+def get_local_addresses():
+    addresses = set()
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
+            probe.connect(("8.8.8.8", 80))
+            address = probe.getsockname()[0]
+            if not address.startswith("127."):
+                addresses.add(address)
+    except OSError:
+        pass
+
+    if not addresses:
+        addresses.update(
             result[4][0]
             for result in socket.getaddrinfo(socket.gethostname(), None)
             if result[0] == socket.AF_INET and not result[4][0].startswith("127.")
-        }
-    )
+        )
+    return sorted(addresses)
+
+
+@app.get("/")
+def read_root():
     return {
         "message": "Video call backend is running",
         "status": "active",
-        "local_addresses": addresses,
+        "local_addresses": get_local_addresses(),
         "tcp_port": video_call.port,
     }
 
