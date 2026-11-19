@@ -1,9 +1,12 @@
 import socket
 import time
+import os
+import shutil
+from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from networking import VideoCall
@@ -76,13 +79,18 @@ def remote_video_feed():
     )
 
 
+class HostRequest(BaseModel):
+    key_id: int = 1
+
+
 class JoinRequest(BaseModel):
     host: str
+    key_id: int = 1
 
 
 @app.post("/call/host")
-def host_call():
-    video_call.start_host()
+def host_call(request: HostRequest = HostRequest()):
+    video_call.start_host(key_id=request.key_id)
     return video_call.get_status()
 
 
@@ -91,7 +99,7 @@ def join_call(request: JoinRequest):
     host = request.host.strip()
     if not host:
         raise HTTPException(status_code=400, detail="Host IP is required")
-    video_call.start_client(host)
+    video_call.start_client(host=host, key_id=request.key_id)
     return video_call.get_status()
 
 
@@ -104,6 +112,137 @@ def end_call():
 @app.get("/call/status")
 def call_status():
     return video_call.get_status()
+
+
+# =============================================================================
+# QKD & QUANTUM CHAT ENDPOINTS
+# =============================================================================
+
+import qkd_chat
+
+
+class SendMessageRequest(BaseModel):
+    sender: str = "Alice (Local Node)"
+    channel: str = "#iiser-bhopal"
+    text: str
+    key_id: int = 1
+
+
+class VerifyMessageRequest(BaseModel):
+    key_id: int
+    iv_hex: str
+    ciphertext_hex: str
+
+
+@app.get("/api/qkd/keys")
+def api_get_qkd_keys():
+    """Returns active QKD keys from local QKMS database"""
+    keys = qkd_chat.get_all_active_keys()
+    return {"status": "SUCCESS", "total": len(keys), "keys": keys}
+
+
+import simulaqron_runner
+
+class SimulaQronRequest(BaseModel):
+    num_qubits: int = 100
+
+@app.post("/api/qkd/run_simulaqron")
+def api_run_simulaqron(req: Optional[SimulaQronRequest] = None):
+    """Executes live SimulaQron BB84 protocol on demand and deposits real quantum key into QKMS"""
+    qubits = req.num_qubits if req else 100
+    try:
+        result = simulaqron_runner.run_live_bb84(num_qubits=qubits)
+        return result
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err))
+
+
+@app.get("/api/chat/messages")
+def api_get_chat_messages(channel: Optional[str] = None):
+    """Returns chat messages, optionally filtered by channel"""
+    msgs = qkd_chat.get_messages(channel)
+    return {"status": "SUCCESS", "channel": channel, "messages": msgs}
+
+
+@app.post("/api/chat/send")
+def api_send_chat_message(req: SendMessageRequest):
+    """Encrypts plaintext using selected QKD key and broadcasts to channel"""
+    if not req.text.strip():
+        raise HTTPException(status_code=400, detail="Message text cannot be empty")
+    try:
+        msg = qkd_chat.send_encrypted_message(
+            sender=req.sender,
+            channel=req.channel,
+            plaintext=req.text.strip(),
+            key_id=req.key_id
+        )
+        return {"status": "SUCCESS", "message": msg}
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err))
+
+
+@app.post("/api/chat/verify")
+def api_verify_chat_message(req: VerifyMessageRequest):
+    """Decrypts ciphertext using only the Key ID from local QKMS database (Zero Key Exposure)"""
+    res = qkd_chat.verify_decrypt_message(req.key_id, req.iv_hex, req.ciphertext_hex)
+    return res
+
+
+# =============================================================================
+# QKD FILE TRANSFER ENDPOINTS
+# =============================================================================
+
+import qkd_file_transfer
+
+# Start TCP file receiver in background
+qkd_file_transfer.start_file_receiver_service(6001)
+
+
+@app.get("/api/files/transfers")
+def api_get_file_transfers():
+    """Returns list of all sent and received files"""
+    return {"status": "SUCCESS", "transfers": qkd_file_transfer.get_transfer_history()}
+
+
+@app.post("/api/files/send")
+async def api_send_file(
+    file: UploadFile = File(...),
+    peer_ip: str = Form("127.0.0.1"),
+    key_id: int = Form(1)
+):
+    """Uploads, encrypts via AES-256-GCM using QKD Key, and streams to peer over port 6001"""
+    upload_tmp = os.path.join(qkd_file_transfer.BASE_DIR, "tmp_uploads")
+    os.makedirs(upload_tmp, exist_ok=True)
+    temp_path = os.path.join(upload_tmp, file.filename)
+
+    with open(temp_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    try:
+        record = qkd_file_transfer.send_file_p2p(
+            filepath=temp_path,
+            peer_ip=peer_ip.strip(),
+            key_id=int(key_id),
+            port=6001
+        )
+        return {"status": "SUCCESS", "transfer": record}
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err))
+    finally:
+        if os.path.exists(temp_path):
+            try:
+                os.remove(temp_path)
+            except Exception:
+                pass
+
+
+@app.get("/api/files/download/{filename}")
+def api_download_file(filename: str):
+    """Download decrypted file received via QKD file transfer"""
+    filepath = os.path.join(qkd_file_transfer.RECEIVED_DIR, filename)
+    if not os.path.exists(filepath):
+        raise HTTPException(status_code=404, detail="File not found")
+    return FileResponse(filepath, filename=filename)
 
 
 @app.on_event("shutdown")

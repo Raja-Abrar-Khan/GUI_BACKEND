@@ -1,10 +1,16 @@
+import os
 import socket
 import struct
 import threading
+from typing import Optional
 
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from crypto_engine import key_from_binary
+from qkd_chat import get_key_raw
 
-MAX_FRAME_SIZE = 4 * 1024 * 1024
+MAX_FRAME_SIZE = 8 * 1024 * 1024
 FRAME_HEADER_SIZE = 4
+NONCE_SIZE = 12
 
 
 def _receive_exact(connection, size):
@@ -30,14 +36,31 @@ class VideoCall:
         self._status = "idle"
         self._peer = None
         self._error = None
+        self._key_id = 1
+        self._aesgcm: Optional[AESGCM] = None
+
+    def _setup_cipher(self, key_id: int):
+        """Derive AES-256-GCM cipher from QKD key in database."""
+        self._key_id = key_id
+        binary_key = get_key_raw(key_id)
+        if not binary_key:
+            # Fallback to key #1 if selected key not found
+            binary_key = get_key_raw(1)
+        if binary_key:
+            aes_key = key_from_binary(binary_key)
+            self._aesgcm = AESGCM(aes_key)
+            print(f"[QKD VIDEO CALL] Initialized AES-256-GCM encryption with QKD Key #{key_id}")
+        else:
+            self._aesgcm = None
 
     def _set_state(self, status, error=None):
         with self._lock:
             self._status = status
             self._error = error
 
-    def start_host(self):
+    def start_host(self, key_id: int = 1):
         self.end()
+        self._setup_cipher(key_id)
         self._stop_event.clear()
         self._role = "host"
         self._set_state("starting")
@@ -68,8 +91,9 @@ class VideoCall:
             if self._listener is listener:
                 self._listener = None
 
-    def start_client(self, host):
+    def start_client(self, host: str, key_id: int = 1):
         self.end()
+        self._setup_cipher(key_id)
         self._stop_event.clear()
         self._role = "client"
         self._peer = host
@@ -89,7 +113,7 @@ class VideoCall:
                 self._set_state("error", str(error))
 
     def _run_connection(self, connection):
-        connection.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 512 * 1024)
+        connection.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 1024 * 1024)
         connection.settimeout(2)
         with self._lock:
             self._connection = connection
@@ -105,14 +129,27 @@ class VideoCall:
                 header = _receive_exact(connection, FRAME_HEADER_SIZE)
                 if header is None:
                     break
-                (frame_size,) = struct.unpack("!I", header)
-                if frame_size <= 0 or frame_size > MAX_FRAME_SIZE:
-                    raise ValueError("Received an invalid video frame size")
-                frame = _receive_exact(connection, frame_size)
-                if frame is None:
+                (packet_size,) = struct.unpack("!I", header)
+                if packet_size <= 0 or packet_size > MAX_FRAME_SIZE:
+                    raise ValueError("Received an invalid video packet size")
+                packet = _receive_exact(connection, packet_size)
+                if packet is None:
                     break
-                with self._lock:
-                    self._remote_frame = frame
+
+                # Decrypt frame using AES-256-GCM
+                if self._aesgcm and len(packet) > NONCE_SIZE:
+                    nonce = packet[:NONCE_SIZE]
+                    ciphertext = packet[NONCE_SIZE:]
+                    try:
+                        decrypted_frame = self._aesgcm.decrypt(nonce, ciphertext, b"QKMS-VIDEO")
+                        with self._lock:
+                            self._remote_frame = decrypted_frame
+                    except Exception as dec_err:
+                        print(f"[QKD VIDEO DECRYPT ERROR] {dec_err}")
+                else:
+                    # Unencrypted fallback
+                    with self._lock:
+                        self._remote_frame = packet
         except (OSError, ValueError) as error:
             if not self._stop_event.is_set():
                 self._set_state("error", str(error))
@@ -133,11 +170,19 @@ class VideoCall:
             frame = self.get_local_frame()
             if frame:
                 try:
-                    connection.sendall(struct.pack("!I", len(frame)) + frame)
+                    # Encrypt frame using AES-256-GCM
+                    if self._aesgcm:
+                        nonce = os.urandom(NONCE_SIZE)
+                        ciphertext = self._aesgcm.encrypt(nonce, frame, b"QKMS-VIDEO")
+                        packet = nonce + ciphertext
+                    else:
+                        packet = frame
+
+                    connection.sendall(struct.pack("!I", len(packet)) + packet)
                 except OSError:
                     self._stop_event.set()
                     return
-            self._stop_event.wait(1 / 15)
+            self._stop_event.wait(1 / 25)  # 25 FPS
 
     def get_remote_frame(self):
         with self._lock:
@@ -150,6 +195,9 @@ class VideoCall:
                 "role": self._role,
                 "peer": self._peer,
                 "error": self._error,
+                "key_id": self._key_id,
+                "encrypted": self._aesgcm is not None,
+                "protocol": "AES-256-GCM (BB84)"
             }
 
     def end(self):
