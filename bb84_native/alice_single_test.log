@@ -1,0 +1,12 @@
+2026-07-13 10:06:53,313:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-13 10:06:53,313:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-13 10:06:53,313:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-13 10:06:53,316:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-13 10:06:53,316:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7a07fe97e6c0>
+2026-07-13 10:06:53,321:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-13 10:06:53,321:DEBUG:LOCAL Alice: Runing client side program.
+2026-07-13 10:06:53,331:DEBUG:LOCAL Alice: Remote qubit is 0.
+2026-07-13 10:06:53,338:DEBUG:LOCAL Alice: Correction info is a=1, b=0.
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X

@@ -1,0 +1,270 @@
+==================================================
+TELEPORT TEST NUMBER: 1
+STABILIZER REFERENCE NUMBER: 1
+NODE: ALICE
+==================================================
+2026-07-17 15:02:07,951:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:07,952:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:07,952:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:07,954:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:07,954:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7f7595372e10>
+2026-07-17 15:02:07,955:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:07,956:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:07,961:DEBUG:LOCAL Alice: Remote qubit is 0.
+2026-07-17 15:02:07,962:DEBUG:LOCAL Alice: Correction info is a=0, b=1.
+==================================================
+TELEPORT TEST NUMBER: 2
+STABILIZER REFERENCE NUMBER: 2
+NODE: ALICE
+==================================================
+2026-07-17 15:02:09,295:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:09,295:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:09,295:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:09,297:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:09,297:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7cfe6cb868a0>
+2026-07-17 15:02:09,298:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:09,298:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:09,302:DEBUG:LOCAL Alice: Remote qubit is 1.
+2026-07-17 15:02:09,304:DEBUG:LOCAL Alice: Correction info is a=0, b=0.
+==================================================
+TELEPORT TEST NUMBER: 3
+STABILIZER REFERENCE NUMBER: 3
+NODE: ALICE
+==================================================
+2026-07-17 15:02:09,637:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:09,637:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:09,637:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:09,639:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:09,639:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x74c7a7d8ec30>
+2026-07-17 15:02:09,639:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:09,639:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:09,643:DEBUG:LOCAL Alice: Remote qubit is 2.
+2026-07-17 15:02:09,645:DEBUG:LOCAL Alice: Correction info is a=0, b=1.
+==================================================
+TELEPORT TEST NUMBER: 4
+STABILIZER REFERENCE NUMBER: 4
+NODE: ALICE
+==================================================
+2026-07-17 15:02:09,986:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:09,986:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:09,986:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:09,989:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:09,989:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x752b0f192c00>
+2026-07-17 15:02:09,989:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:09,989:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:09,993:DEBUG:LOCAL Alice: Remote qubit is 3.
+2026-07-17 15:02:09,994:DEBUG:LOCAL Alice: Correction info is a=0, b=1.
+==================================================
+TELEPORT TEST NUMBER: 5
+STABILIZER REFERENCE NUMBER: 5
+NODE: ALICE
+==================================================
+2026-07-17 15:02:10,327:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:10,327:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:10,327:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:10,330:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:10,330:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7bd4ddb8ebd0>
+2026-07-17 15:02:10,331:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:10,331:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:10,338:DEBUG:LOCAL Alice: Remote qubit is 4.
+2026-07-17 15:02:10,342:DEBUG:LOCAL Alice: Correction info is a=0, b=1.
+==================================================
+TELEPORT TEST NUMBER: 6
+STABILIZER REFERENCE NUMBER: 6
+NODE: ALICE
+==================================================
+2026-07-17 15:02:10,681:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:10,682:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:10,682:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:10,683:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:10,684:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7ea89038ea50>
+2026-07-17 15:02:10,684:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:10,684:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:10,687:DEBUG:LOCAL Alice: Remote qubit is 5.
+2026-07-17 15:02:10,689:DEBUG:LOCAL Alice: Correction info is a=0, b=0.
+==================================================
+TELEPORT TEST NUMBER: 7
+STABILIZER REFERENCE NUMBER: 7
+NODE: ALICE
+==================================================
+2026-07-17 15:02:11,025:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:11,026:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:11,026:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:11,028:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:11,028:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x761f163825d0>
+2026-07-17 15:02:11,029:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:11,030:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:11,034:DEBUG:LOCAL Alice: Remote qubit is 6.
+2026-07-17 15:02:11,044:DEBUG:LOCAL Alice: Correction info is a=0, b=0.
+==================================================
+TELEPORT TEST NUMBER: 8
+STABILIZER REFERENCE NUMBER: 8
+NODE: ALICE
+==================================================
+2026-07-17 15:02:11,394:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:11,394:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:11,394:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:11,396:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:11,396:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x75164a78eba0>
+2026-07-17 15:02:11,398:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:11,398:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:11,403:DEBUG:LOCAL Alice: Remote qubit is 7.
+2026-07-17 15:02:11,404:DEBUG:LOCAL Alice: Correction info is a=0, b=0.
+==================================================
+TELEPORT TEST NUMBER: 9
+STABILIZER REFERENCE NUMBER: 9
+NODE: ALICE
+==================================================
+2026-07-17 15:02:11,757:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:11,760:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:11,760:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:11,762:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:11,762:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x7ad36c986f60>
+2026-07-17 15:02:11,762:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:11,762:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:11,771:DEBUG:LOCAL Alice: Remote qubit is 8.
+2026-07-17 15:02:11,774:DEBUG:LOCAL Alice: Correction info is a=1, b=0.
+==================================================
+TELEPORT TEST NUMBER: 10
+STABILIZER REFERENCE NUMBER: 10
+NODE: ALICE
+==================================================
+2026-07-17 15:02:12,122:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-17 15:02:12,122:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-17 15:02:12,122:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-17 15:02:12,125:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-17 15:02:12,125:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x76a64f38ed50>
+2026-07-17 15:02:12,126:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-17 15:02:12,126:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+STAGE 5 DONE: qB sent to Bob
+2026-07-17 15:02:12,135:DEBUG:LOCAL Alice: Remote qubit is 9.
+2026-07-17 15:02:12,137:DEBUG:LOCAL Alice: Correction info is a=0, b=1.

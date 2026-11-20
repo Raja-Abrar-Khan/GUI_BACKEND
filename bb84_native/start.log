@@ -1,0 +1,11 @@
+No nodes specified to start. Starting all nodes configured in '/home/ubuntu/.simulaqron/simulaqron_network.json'.
+Network with name default is seems to be already running.
+This is based on the fact that the PID file '/home/ubuntu/.simulaqron_pids/simulaqron_network_default.pid' already exists.
+
+To try to stop the running backend, run 'simulaqron stop --name default'.
+If the error persist, you might need to use 'simulaqron reset' commands to reset the
+backend execution state:
+* 'simulaqron reset pidfiles' will delete *all* the PID files in '/home/ubuntu/.simulaqron_pids'.
+* 'simulaqron reset processes' will *kill all* running simulaqron-related processes.
+
+Check the help of the simulaqron reset command ('simulaqron reset -h') to know more.

@@ -1,0 +1,33 @@
+========== TELEPORT TEST 1 ==========
+2026-07-13 10:18:14,995:DEBUG:SETUP_LOCAL Alice: Starting local classical communication server (Alice: 10.11.80.94, 8001).
+2026-07-13 10:18:14,996:DEBUG:SETUP_LOCAL Alice: Connecting to local virtual node (Alice: 10.11.80.94, 8003).
+2026-07-13 10:18:14,996:DEBUG:SETUP_LOCAL Alice: Making classical connection to Bob (Bob: 10.11.80.93, 8010).
+2026-07-13 10:18:14,997:DEBUG:SETUP_LOCAL Alice: All connections set up.
+2026-07-13 10:18:14,997:DEBUG:SETUP_LOCAL Alice: Connected node Bob with <twisted.spread.pb.RemoteReference object at 0x72ba1e9827e0>
+2026-07-13 10:18:14,998:DEBUG:SETUP_LOCAL Alice: Created quantum register at virtual node.
+2026-07-13 10:18:14,998:DEBUG:LOCAL Alice: Runing client side program.
+STAGE 1: creating q1
+STAGE 1 DONE: q1 created
+Qubit to be teleported is:
+Stabilizer state on 1 with the following stabilizer generators: 
+	+1 X
+STAGE 2: creating qA
+STAGE 2 DONE: qA created
+STAGE 3: creating qB
+STAGE 3 DONE: qB created
+STAGE 4: creating EPR pair
+STAGE 4 DONE: EPR pair created
+STAGE 5: sending qB to Bob
+Unhandled error in Deferred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/simulaqron412/simulaqron-venv/lib/python3.12/site-packages/twisted/internet/defer.py", line 1853, in _inlineCallbacks
+    result = context.run(
+  File "/home/ubuntu/simulaqron412/simulaqron-venv/lib/python3.12/site-packages/twisted/spread/pb.py", line 513, in throwExceptionIntoGenerator
+    return g.throw(RemoteError(self.type, self.value, self.traceback))
+  File "/home/ubuntu/SimulaQron/examples/native-mode/teleport/aliceTest.py", line 107, in runClientNode
+    remoteNum = yield virtRoot.callRemote("send_qubit", qB, "Bob")
+twisted.spread.pb.RemoteError: "'Max virtual qubits reached'"
+
+TEST 1 EXIT CODE = 124
+TEST 1 FAILED OR TIMED OUT

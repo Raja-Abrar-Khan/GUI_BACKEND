@@ -1,0 +1,80 @@
+
+
+============================================================
+          BB84 QUANTUM KEY DISTRIBUTION PROTOCOL
+============================================================
+
+Experiment Type : BB84 Quantum Key Distribution
+Protocol Version: 2.0
+Implementation  : SimulaQron Native Mode
+Node            : Alice
+Generated On    : 08-08-2026 16:04:04
+
+============================================================
+System Information
+============================================================
+
+Machine Name    : ubuntu-HP-Z2-Tower-G9-Workstation-Desktop-PC
+Network File    : simulaqron_network.json
+Settings File   : simulaqron_settings.json
+
+============================================================
+Protocol Parameters
+============================================================
+Total Qubits       : 100
+Block Size         : 4
+QBER Threshold     : 11.0 %
+
+============================================================
+Quantum State Preparation
+============================================================
+
+Alice Raw Key
+
+0110000111001111100011000000111100010101010110111101111010111011111000010101111011110110111001101101
+
+============================================================
+Alice Basis Sequence
+============================================================
+
+ZXZZZZZZZXZZXZXZZZXXZZZXXXZZZXZXXXXZXZXXZZZZZXXZZZXZZXZXXZXXZZZZXXXXZZZXXZXXXXXXXXXXXZZXZZZXZXZZXZXX
+
+============================================================
+Basis Reconciliation
+============================================================
+
+Alice Sifted Key
+
+100101110110000111000110101110111111000101110101000
+
+Sifted Key Length : 51
+
+============================================================
+Error Reconciliation
+============================================================
+
+Mismatch Blocks : [7]
+
+============================================================
+Privacy Amplification
+============================================================
+
+SHA-256 Secret Key
+
+a92bab0feb8ac857e25dbffa40a1ec7dd9c5cad3bfee6fb96998a1406bbbae30
+
+============================================================
+Performance Statistics
+============================================================
+
+Execution Time : 5.058444 seconds
+
+============================================================
+Final Statistics
+============================================================
+
+Protocol Status : SUCCESS
+
+============================================================
+End of Experiment Report
+============================================================

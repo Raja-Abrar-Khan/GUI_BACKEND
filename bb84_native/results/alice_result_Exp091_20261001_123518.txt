@@ -1,0 +1,64 @@
+
+===============================================================================
+        BB84 QUANTUM KEY DISTRIBUTION -- EXPERIMENT REPORT (ALICE)
+===============================================================================
+Protocol Version   : 4.0 -- QRNG + Full Cascade + Toeplitz Privacy Amplification
+Execution Mode     : Distributed Two-System SimulaQron Native Mode
+Station Node       : Alice (Transmitter)
+Timestamp          : 2026-10-01 12:35:18
+Machine / Host     : ubuntu-HP-Z2-Tower-G9-Workstation-Desktop-PC
+
+-------------------------------------------------------------------------------
+1. PROTOCOL CONFIGURATION
+-------------------------------------------------------------------------------
+Total Transmitted Qubits  : 100
+RNG Method                : True QRNG (|+> quantum measurement on SimulaQron)
+QBER Security Threshold   : 11.00 %
+Sample Ratio              : 20.0%
+Cascade Passes            : 4
+Privacy Amplification     : Toeplitz 2-Universal Matrix Hash
+
+-------------------------------------------------------------------------------
+2. QUANTUM TRANSMISSION RECORD (QRNG)
+-------------------------------------------------------------------------------
+Alice Raw Bits (First 50) : 10110101000101010100100111101001000011111100111010...
+Alice Bases    (First 50) : ZZXXZXXZZZZXZZXXXXXXXXZXZZZXXXZZZZZXXZXXZXZXZZZZZX...
+Cascade Seed (QRNG 64b)   : 3566945436690816536
+Toeplitz Seed (derived)   : 788117393445383909
+Quantum Transmission Time : 5.8892 seconds
+
+-------------------------------------------------------------------------------
+3. BASIS SIFTING & PARAMETER ESTIMATION
+-------------------------------------------------------------------------------
+Sifted Key Length         : 52
+Sample Bits Evaluated     : 10
+Sample Bits Discarded     : 10 (Mandatory security rule)
+Reconcile Key Candidate   : 42 bits
+Estimated QBER            : 0.0000 %
+Security Verification     : PASSED
+
+-------------------------------------------------------------------------------
+4. CASCADE ERROR CORRECTION (Brassard & Salvail, 1993)
+-------------------------------------------------------------------------------
+Algorithm                 : Full Cascade (4 passes, adaptive k1, back-propagation)
+Cascade Session Seed      : 3566945436690816536 (QRNG-derived, 64-bit)
+Bits Corrected by Cascade : 0
+Total Parity Bits Leaked  : 11
+Leakage Fraction          : 0.2619 bits/bit
+
+-------------------------------------------------------------------------------
+5. PRIVACY AMPLIFICATION & SHARED SECRET
+-------------------------------------------------------------------------------
+Algorithm                 : Toeplitz Matrix (2-Universal Hash Family)
+Toeplitz Seed (derived)   : 788117393445383909
+Theoretical Secure Bound  : 31 bits (Shor-Preskill)
+Output Key Length (l)     : 31 bits
+Final Session Key (HEX)   : f5cf4b56
+Final Session Key (BIN)   : 1111010111001111010010110101011
+
+-------------------------------------------------------------------------------
+6. BENCHMARK & STATUS
+-------------------------------------------------------------------------------
+Total Execution Time      : 6.110799 seconds
+Protocol Final Status     : SUCCESS
+===============================================================================

@@ -1,0 +1,57 @@
+
+===============================================================================
+              BB84 QUANTUM KEY DISTRIBUTION - EXPERIMENT REPORT
+===============================================================================
+Protocol Version   : 3.0 Standard Publication Level
+Execution Mode     : Distributed Two-System SimulaQron Native Mode
+Station Node       : Alice (Transmitter)
+Timestamp          : 2026-09-30 17:27:24
+Machine / Host     : ubuntu-HP-Z2-Tower-G9-Workstation-Desktop-PC
+
+-------------------------------------------------------------------------------
+1. PROTOCOL CONFIGURATION
+-------------------------------------------------------------------------------
+Total Transmitted Qubits  : 100
+Error Correction Block    : 4
+QBER Security Threshold   : 11.00 %
+Sample Ratio              : 20.0%
+
+-------------------------------------------------------------------------------
+2. QUANTUM TRANSMISSION RECORD
+-------------------------------------------------------------------------------
+Alice Raw Bits (First 50) : 00101111001110101000110111010000000000100001111100...
+Alice Bases    (First 50) : ZZZXXZXZZXXZZXXZZXZZXXXXXZXZZZXZZXXZXZZXXZZXXXXXXX...
+Quantum Transmission Time : 5.4247 seconds
+
+-------------------------------------------------------------------------------
+3. BASIS SIFTING & PARAMETER ESTIMATION
+-------------------------------------------------------------------------------
+Sifted Key Length         : 48
+Sample Bits Evaluated     : 9
+Sample Bits Discarded     : 9 (Mandatory Rule)
+Reconciled Key Candidate  : 39 bits
+Estimated QBER            : 0.00 %
+Security Verification     : PASSED
+
+-------------------------------------------------------------------------------
+4. ERROR RECONCILIATION (BISECTION SEARCH)
+-------------------------------------------------------------------------------
+Mismatched Blocks Found   : 1
+Bits Corrected by Bob     : 1
+Parity Bits Disclosed     : 24 bits
+Information Leakage       : 61.54%
+
+-------------------------------------------------------------------------------
+5. PRIVACY AMPLIFICATION & SHARED SECRET
+-------------------------------------------------------------------------------
+Theoretical Secure Bound  : 15 bits
+Amplification Algorithm   : SHA-256 Cryptographic Compression
+Final Session Key (HEX)   : 040fcdbe5feba75d01f1fbbecc176f31b128dc246396c4a7fd81546e145a3c93
+Final Session Key (BIN)   : 0000010000001111110011011011111001011111111010111010011101011101000000011111000111111011101111101100110000010111011011110011000110110001001010001101110000100100011000111001011011000100101001111111110110000001010101000110111000010100010110100011110010010011
+
+-------------------------------------------------------------------------------
+6. BENCHMARK & STATUS
+-------------------------------------------------------------------------------
+Total Execution Time      : 5.475705 seconds
+Protocol Final Status     : SUCCESS
+===============================================================================
